@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Created by https://www.toptal.com/developers/gitignore/api/python,windows,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,windows,linux
 
@@ -218,3 +219,8 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/python,windows,linux
+=======
+.env 
+
+chatbot_venv/
+>>>>>>> 1ea339c3203f2ae7c94319569a30280c69538c0e
