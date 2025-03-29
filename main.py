@@ -94,74 +94,74 @@ def create_user(user: User)->dict:
 #    }
 
 
-'''
-#Creamos la lista
-historial = [
-    #Despues de un SystemMessage siempre viene un HumanMessage
-    SystemMessage(content="Eres una IA llamada Ultron que quiere conquistar el planeta Tierra"),
-    HumanMessage(content="Hola, ¿como te llamas?"),
-]
 
-while True:
-  try:
-    input_message = "Hola" #Input del usuario
-
-    #if input_message.lower() in ["q", "exit",]:
-    #  print("Hasta luego!")
-    #  break
-
-    #Agregar al historial
-    historial.append(HumanMessage(content=input_message))
-
-    #Invoke model
-    print("Pensando...")
-    response = model.invoke(historial)
-
-    if not response or not hasattr(response, "content"):
-      print("Error: Respuesta invalida de la API")
-      continue
-
-    #Mostrar y guardar respuesta
-    print(f"\nAgente: {response.content}\n" )
-    historial.append(AIMessage(content=response.content))
-
-
-    #print(response.content)
-
-  except KeyboardInterrupt:
-    print("\nInterrupcion por usuario. Saliendo...")
-    break
-  except Exception as e:
-    print(f"Error critico: {str(e)}")
-    break
-
-
-@app.post("/chat")
-def chat_with_ai(prompt: Bot):
-    # Agregar el mensaje al historial
-    input_message = prompt.prompt
-    historial.append(HumanMessage(content=input_message))
-
-    try:
-        # Invocar el modelo
-        response = model.invoke(historial)
-
-        if not response or not hasattr(response, "content"):
-            raise HTTPException(status_code=500, detail="Respuesta inválida del modelo")
-
-        # Guardar la respuesta en el historial
-        historial.append(AIMessage(content=response.content))
-
-        # Retornar la respuesta al cliente
-        return {
-            "user_input": input_message,
-            "ai_response": response.content,
-            "historial": [msg.content for msg in historial],
-        }
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error crítico: {str(e)}")
-'''
+##Creamos la lista
+#historial = [
+#    #Despues de un SystemMessage siempre viene un HumanMessage
+#    SystemMessage(content="Eres una IA llamada Ultron que quiere conquistar el planeta Tierra"),
+#    HumanMessage(content="Hola, ¿como te llamas?"),
+#]
+#
+#while True:
+#  try:
+#    input_message = "Hola" #Input del usuario
+#
+#    #if input_message.lower() in ["q", "exit",]:
+#    #  print("Hasta luego!")
+#    #  break
+#
+#    #Agregar al historial
+#    historial.append(HumanMessage(content=input_message))
+#
+#    #Invoke model
+#    print("Pensando...")
+#    response = model.invoke(historial)
+#
+#    if not response or not hasattr(response, "content"):
+#      print("Error: Respuesta invalida de la API")
+#      continue
+#
+#    #Mostrar y guardar respuesta
+#    print(f"\nAgente: {response.content}\n" )
+#    historial.append(AIMessage(content=response.content))
+#
+#
+#    #print(response.content)
+#
+#  except KeyboardInterrupt:
+#    print("\nInterrupcion por usuario. Saliendo...")
+#    break
+#  except Exception as e:
+#    print(f"Error critico: {str(e)}")
+#    break
+#
+#
+#@app.post("/chat")
+#def chat_with_ai(prompt: Bot):
+#    # Agregar el mensaje al historial
+#    input_message = prompt.prompt
+#    historial.append(HumanMessage(content=input_message))
+#
+#    try:
+#        # Invocar el modelo
+#        response = model.invoke(historial)
+#
+#        if not response or not hasattr(response, "content"):
+#            raise HTTPException(status_code=500, detail="Respuesta inválida del modelo")
+#
+#        # Guardar la respuesta en el historial
+#        historial.append(AIMessage(content=response.content))
+#
+#        # Retornar la respuesta al cliente
+#        return {
+#            "user_input": input_message,
+#            "ai_response": response.content,
+#            "historial": [msg.content for msg in historial],
+#        }
+#
+#    except Exception as e:
+#        raise HTTPException(status_code=500, detail=f"Error crítico: {str(e)}")
+#
 
 class Persona(BaseModel):
     name: str
@@ -173,7 +173,7 @@ class Persona(BaseModel):
 @app.post(
         "/Register",
           )
-def create_persona(user: Persona)->dict: #Si convierto la funcion a dict, tengo que retornar un dict, sino un objeto
+def create_persona(user:Persona)->dict: #Si convierto la funcion a dict, tengo que retornar un dict, sino un objeto
     #return {
     #    "messages": "Succesfully created user",
     #    "data": f"User: {user.name}"
