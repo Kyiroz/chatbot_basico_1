@@ -1,29 +1,11 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-import os
-from dotenv import load_dotenv
-from langchain_cohere import ChatCohere
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage #Los AIMessage responden a los HumanMessage
-from schemas.schema import Bot
+from schemas.schema import Bot, User
+from core.models import model
 
 #Instancia de FastAPI
 app = FastAPI()
-
-#Para hacer el chatbot
-
-# Cargar las variables del archivo .env
-load_dotenv()
-
-# Acceder a la clave secreta
-COHERE_API_KEY = os.getenv('COHERE_API_KEY')
-
-# Agregarla al entorno virtual
-os.environ['COHERE_API_KEY'] = COHERE_API_KEY
-
-#Instancia del modelo
-#model = ChatCohere(cohere_api_key=COHERE_API_KEY, model="command-r")
-model = ChatCohere(api_key=COHERE_API_KEY)
-
 
 #DB
 users = [
@@ -57,11 +39,6 @@ def get_all_users()->dict:
         "data": users
     }
 
-class User(BaseModel):
-    name: str
-    email: str
-    edad: int
-
 @app.get(
         "/users/{user_id}"
         )
@@ -73,7 +50,7 @@ def get_user_by_id(user_id: int)->dict:
                 "messages": "Succesfully fetched user",
                 "data": user
             }
-    raise HTTPException(status_code=404, detail="User not found")
+    raise HTTPException(status_code=404, detail="User not found") #Dudoso, preguntar
 
 @app.post(
         "/users",
