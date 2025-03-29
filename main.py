@@ -215,7 +215,7 @@ def chat_bot(chat: Bot):
     print ("Pensando...")
     response = model.invoke(historial)
     if not response or not hasattr(response, "content"):
-       print("Error: Respuesta invalida de la API")
+        print("Error: Respuesta invalida de la API")
         #continue
     #Mostrar y guardar respuesta
     print (f"\nAgente: {response.content}\n" )
