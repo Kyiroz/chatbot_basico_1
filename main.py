@@ -174,11 +174,11 @@ class Persona(BaseModel):
         "/Register",
           )
 def create_persona(user:Persona)->dict: #Si convierto la funcion a dict, tengo que retornar un dict, sino un objeto
-    #return {
-    #    "messages": "Succesfully created user",
-    #    "data": f"User: {user.name}"
-    #}
-    return "Hola mundo"
+    return {
+        "messages": "Succesfully created user",
+        "data": f"User: {user.name}"
+    }
+    #return "Hola mundo"
 
 
 
@@ -215,8 +215,8 @@ def chat_bot(chat: Bot):
     print ("Pensando...")
     response = model.invoke(historial)
     if not response or not hasattr(response, "content"):
-      print("Error: Respuesta invalida de la API")
-      #continue
+       print("Error: Respuesta invalida de la API")
+        #continue
     #Mostrar y guardar respuesta
     print (f"\nAgente: {response.content}\n" )
     historial.append(AIMessage(content=response.content))
