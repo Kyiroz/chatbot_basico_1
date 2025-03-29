@@ -224,8 +224,9 @@ def chat_bot(chat: Bot):
     return {
         "HumanMessage": input_message,
         "AImessage": response.content,
-        "Historial": historial[-2].content #o tambien  
+        "Historial": [i.content for i in historial] #historial[-2].content #o tambien  
     }
+
             
       #except KeyboardInterrupt:
       #  print("\nInterrupcion por usuario. Saliendo...")
