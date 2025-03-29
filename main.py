@@ -224,7 +224,7 @@ def chat_bot(chat: Bot):
     return {
         "HumanMessage": input_message,
         "AImessage": response.content,
-        "Historial": [i.content for i in historial] #historial[-2].content #o tambien  
+        "Historial": [i.content for i in historial] #historial[-2].content #o tambien
     }
 
             
